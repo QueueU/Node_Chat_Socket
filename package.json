@@ -1,0 +1,26 @@
+{
+  "name": "node-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QueueU/Node_Chat_Socket.git"
+  },
+  "author": "Queue",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QueueU/Node_Chat_Socket/issues"
+  },
+  "homepage": "https://github.com/QueueU/Node_Chat_Socket#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dependable": "^1.1.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "lodash": "^4.17.11"
+  }
+}
