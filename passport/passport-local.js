@@ -19,18 +19,29 @@ passport.use('local.signup',new LocalStrategy({
     passwordField:'password',
     passReqToCallback:true
 },(req,email,password,done) => {
+
+    console.log(email,password);
+    
+    
     User.findOne({'email':email},(err,user) => {
         if(err) {
+            console.log("UnDone");
             return done(err);
         }
 
         if(user){
+            console.log("Done");
             return done(null,false,req.flash('error','User with email already exist'));
         }
+
+
         const newUser =new User();
         newUser.username = req.body.username;
         newUser.email =req.body.email;
-        newUser.password=req.body.password;
+        newUser.password=newUser.encryptPassword(req.body.password);
+
+        console.log("UserName",newUser.username);
+        console.log("email",newUser.email);
 
         newUser.save((err) => {
             done(null,newUser);

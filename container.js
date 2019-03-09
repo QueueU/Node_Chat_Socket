@@ -5,6 +5,7 @@ const container =dependable.container();
 const simpleDependecies = [
     ['_','lodash'],
     ['mongoose','mongoose'],
+    ['passport','passport'],
     ['async','async']
 ];
 

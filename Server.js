@@ -10,7 +10,7 @@ const validator = require('express-validator');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('flash');
-const passport = require('passport');
+const passport = require('passport'); 
 const mongoose=require('mongoose');
 
 
@@ -18,7 +18,15 @@ container.resolve(function (users) {
 
     
     mongoose.Promise =global.Promise;
-    mongoose.connect=('mongodb://localhost/Chat_App',{useMongoClient:true});  
+    mongoose.connect('mongodb://localhost/Chat_App', {useNewUrlParser: true},function(err){
+        if(err){
+            console.log("errpe");
+        }
+        else{
+            console.log("sucessfully connected to mongoDB");
+        }
+    });  
+  //  mongoose.connection.on('connected', function(){});
     
 
     const app = SetupExprss();
@@ -53,11 +61,12 @@ container.resolve(function (users) {
 
         app.use(validator());
         
+ 
          app.use(session({
             secret: 'addyourownsecretkey',
             resave: false,
             saveUninitialized: false,
-            //store: new MongoStore({mongooseConnection: mongoose.connection})
+            store: new MongoStore({mongooseConnection: mongoose.connection})
         })); 
 
       app.use(flash());
