@@ -41,6 +41,8 @@ container.resolve(function (users) {
 
 
     function ConfigureExpress(app) {
+
+        require('./passport/passport-local');
         app.use(express.static('public'));
 
 
