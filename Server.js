@@ -14,7 +14,7 @@ const passport = require('passport');
 const mongoose=require('mongoose');
 
 
-container.resolve(function (users) {
+container.resolve(function (users,_) {
 
     
     mongoose.Promise =global.Promise;
@@ -64,7 +64,7 @@ container.resolve(function (users) {
  
          app.use(session({
             secret: 'addyourownsecretkey',
-            resave: false,
+            resave: true,
             saveUninitialized: false,
             store: new MongoStore({mongooseConnection: mongoose.connection})
         })); 
@@ -72,6 +72,8 @@ container.resolve(function (users) {
       app.use(flash());
        app.use(passport.initialize());
        app.use(passport.session());
+
+       app.locals._=_;
     }
 
 });

@@ -13,6 +13,8 @@ const userSchema = mongoose.Schema({
 
 },console.log("Here at user"));
 
+
+console.log("username",userSchema.username);
 userSchema.methods.encryptPassword = function(password){
     return bcrypt.hashSync(password,bcrypt.genSaltSync(10),null);
 };
