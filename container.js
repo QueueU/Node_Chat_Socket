@@ -7,7 +7,9 @@ const simpleDependecies = [
     ['mongoose','mongoose'],
     ['passport','passport'],
     ['async','async'],
-    ['formidable','formidable']
+    ['formidable','formidable'],
+    ['Club','./models/clubs'],
+    ['aws','./helpers/AWSUpload']
 ];
 
 simpleDependecies.forEach(function(val){
