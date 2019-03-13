@@ -8,10 +8,20 @@ module.exports=function(_,passport,User){
             router.get('/signup',this.getSignUp);
             router.get('/home',this.homePage);    
 
-
+            router.post('/',this.postLogin);
             router.post('/signup',User.SignUpValidation,this.postSignup);
 
         },
+
+        postLogin:passport.authenticate('local.signup',{
+            
+            successRedirect : '/home',
+            failurRedirect:'/',
+            failurFlash:true
+        },console.log("get")), 
+
+
+
 
         indexPage: function (req,res)
         {

@@ -9,6 +9,8 @@ module.exports = function () {
             req.checkBody('email', 'Email is Invalid').isEmail();
             req.checkBody('password', 'Password is Required').notEmpty();
             req.checkBody('password', 'Password Must Not Be Less Than 5').isLength({ min: 5 });
+
+            
             /*
             
             req.getValidationResult()

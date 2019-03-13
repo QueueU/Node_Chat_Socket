@@ -6,7 +6,8 @@ const simpleDependecies = [
     ['_','lodash'],
     ['mongoose','mongoose'],
     ['passport','passport'],
-    ['async','async']
+    ['async','async'],
+    ['formidable','formidable']
 ];
 
 simpleDependecies.forEach(function(val){

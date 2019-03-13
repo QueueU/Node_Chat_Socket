@@ -14,7 +14,7 @@ const passport = require('passport');
 const mongoose=require('mongoose');
 
 
-container.resolve(function (users,_) {
+container.resolve(function (users,_,admin) {
 
     
     mongoose.Promise =global.Promise;
@@ -43,6 +43,7 @@ container.resolve(function (users,_) {
         const router = require('express-promise-router')();
 
         users.SetRouting(router);
+        admin.SetRouting(router);
         app.use(router);
     }
 
