@@ -37,7 +37,7 @@ const upload = multer({
 
     rename: function (fieldname, filename) {
 
-        console.log(filename.replace(/\W+/g, '-').toLowerCase());
+        console.log("here name of file ",filename.replace(/\W+/g, '-').toLowerCase());
         return filename.replace(/\W+/g, '-').toLowerCase();
         
     }

@@ -14,7 +14,7 @@ const passport = require('passport');
 const mongoose=require('mongoose');
 
 
-container.resolve(function (users,_,admin) {
+container.resolve(function (users,_,admin,home) {
 
     
     mongoose.Promise =global.Promise;
