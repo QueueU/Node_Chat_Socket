@@ -62,22 +62,22 @@
                 <% _.forEach(data,function(val){ %>
                     <div class="category-list">
                         <div class="row">
-                          
+                                <% _.forEach(val,function(val2){ %>
                             <form action="/home" method="post" id="favorite">
                                 <div class="item col-md-4">
             <a style="text-decoration:none" href=" ">
                                     <div class="thumbnail">
                                         
-                                       <img src="https://nodechataws.s3.amazonaws.com/<%= val.image %>" alt="">
+                                       <img src="https://nodechataws.s3.amazonaws.com/<%= val2.image %>" alt="">
                                         <div class="caption">
                                             <h4>
-                                               <%= val.name%>   
+                                               <%= val2.name%>   
                                             </h4>
                                             
                                             <div class="row">
                                                 <div class="col-xs-12 col-md-6">
                                                     <p>
-                                                        <%= val.country%>
+                                                        <%= val2.country%>
                                                         
                                                     </p>
                                                 </div>
@@ -95,7 +95,7 @@
                                     </a>
                                 </div>
                             </form>
-                         
+                            <% })%>
                         </div>
                     </div>
                 <% })%>

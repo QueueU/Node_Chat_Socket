@@ -17,8 +17,18 @@ module.exports = function(async,Club,_){
 
           ],(err,result) => {
               const res1=result[0];
-              console.log(res1);
-              res.render('home',{title:'Footballkik -Home',data:res1})
+              //console.log(res1);
+
+              const dataChunk = [];
+              const chunkSize =3;
+
+              for(let i=0;i<res1.length;i+=chunkSize)
+              {
+                  dataChunk.push(res1.slice(i,i+chunkSize));
+              }
+              console.log(dataChunk);
+
+              res.render('home',{title:'Footballkik -Home',data:dataChunk})
           })
         }
     }
