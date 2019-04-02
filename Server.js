@@ -18,7 +18,7 @@ container.resolve(function (users,_,admin,home) {
 
     
     mongoose.Promise =global.Promise;
-    mongoose.connect('mongodb://localhost/Chat_App', {useNewUrlParser: true},function(err){
+    mongoose.connect('mongodb+srv://Ujash:ujash7878@cluster0-ode8r.mongodb.net/test?retryWrites=true', {useNewUrlParser: true},function(err){
         if(err){
             console.log("errpe");
         }
@@ -44,6 +44,7 @@ container.resolve(function (users,_,admin,home) {
 
         users.SetRouting(router);
         admin.SetRouting(router);
+        home.SetRouting(router)
         app.use(router);
     }
 
