@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-
+<%- include partials/navbar.ejs %>
   
 <div class="col-md-12">
    <form action="/results" method="post">
@@ -65,7 +65,8 @@
                                 <% _.forEach(val,function(val2){ %>
                             <form action="/home" method="post" id="favorite">
                                 <div class="item col-md-4">
-            <a style="text-decoration:none" href=" ">
+                                    <a href="/group/<%= val2.name %>">
+           
                                     <div class="thumbnail">
                                         
                                        <img src="https://nodechataws.s3.amazonaws.com/<%= val2.image %>" alt="">

@@ -12,9 +12,9 @@ const MongoStore = require('connect-mongo')(session);
 const flash = require('flash');
 const passport = require('passport'); 
 const mongoose=require('mongoose');
+const socketIO = require('socket.io');
 
-
-container.resolve(function (users,_,admin,home) {
+container.resolve(function (users,_,admin,home,group) {
 
     
     mongoose.Promise =global.Promise;
@@ -35,17 +35,23 @@ container.resolve(function (users,_,admin,home) {
         const app = express();
 
         const server = http.createServer(app);
+        const io=socketIO(server);
         server.listen(8081, function () {
             console.log('Listing on port  3000');
         });
 
+
+
         ConfigureExpress(app);
+        require('./socket/groupchat')(io);
         const router = require('express-promise-router')();
 
         users.SetRouting(router);
         admin.SetRouting(router);
-        home.SetRouting(router)
+        home.SetRouting(router);
+        group.SetRouting(router);
         app.use(router);
+        
     }
 
 
