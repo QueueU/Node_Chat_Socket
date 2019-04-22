@@ -44,7 +44,7 @@
                                         <select class="form-control" name="country" id="country" >
                                             <option value="">Filter By Country</option>
                                             
-                                                <option value=""></option>
+                                                <option value="UJash">Ujash</option>
                                             
                                         </select>
                                         <div class="clearfix"></div>
@@ -65,14 +65,15 @@
                                 <% _.forEach(val,function(val2){ %>
                             <form action="/home" method="post" id="favorite">
                                 <div class="item col-md-4">
-                                    <a href="/group/<%= val2.name %>">
+                                        <a style="text-decoration:none" href="/group/<%= val2.name.replace(/ /g, "-") %>">
+                                  <!--  <a href="/group/<%= val2.name %>">-->
            
                                     <div class="thumbnail">
                                         
                                        <img src="https://nodechataws.s3.amazonaws.com/<%= val2.image %>" alt="">
                                         <div class="caption">
                                             <h4>
-                                               <%= val2.name%>   
+                                                    <%= val2.name %> (<%= val2.fans.length %>) 
                                             </h4>
                                             
                                             <div class="row">

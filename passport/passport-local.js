@@ -10,6 +10,9 @@ passport.serializeUser((user,done) =>{
 
 passport.deserializeUser((id,done) => {
     User.findById(id,(err,user) =>{
+
+        //console.log("from Local Passport"+err);
+        //console.log("Frol Local Passport"+user)
         done(err,user);
     })
 });
@@ -20,7 +23,7 @@ passport.use('local.signup',new LocalStrategy({
     passReqToCallback:true
 },(req,email,password,done) => {
 
-    console.log(email,password);
+    //console.log(email,password);
     
     
     User.findOne({'email':email},(err,user) => {

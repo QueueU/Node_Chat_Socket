@@ -9,7 +9,20 @@ const userSchema = mongoose.Schema({
     facebook: {type : String, default:''},
     fbToken: Array,
     google: {type : String, default:''},
-    googleToken:Array
+    googleToken:Array,
+    sentRequest:[{
+        username:{type:String,default:''}
+    }],
+    request:[{
+        userId:{type:mongoose.Schema.Types.ObjectId,ref:'User'},
+        username:{type:String,default:''}
+    }],
+    friendsList:[{
+        friendId:{type:mongoose.Schema.Types.ObjectId,ref:'User'},
+        friendName:{type:String,default:''}
+    }],
+    totalRequest:{type:Number,default:0}
+    
 
 },console.log("Here at user"));
 

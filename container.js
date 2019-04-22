@@ -7,6 +7,7 @@ const simpleDependecies = [
     ['mongoose','mongoose'],
     ['passport','passport'],
     ['async','async'],
+    ['Users', './models/user'],
     ['formidable','formidable'],
     ['Club','./models/clubs'],
     ['aws','./helpers/AWSUpload'],

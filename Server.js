@@ -3,8 +3,6 @@ const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const http = require('http');
 const container = require('./container');
-
-
 const cookieParser =require('cookie-parser');
 const validator = require('express-validator');
 const session = require('express-session');
@@ -13,7 +11,7 @@ const flash = require('flash');
 const passport = require('passport'); 
 const mongoose=require('mongoose');
 const socketIO = require('socket.io');
-
+const {Users} = require('./helpers/UsersClass');
 container.resolve(function (users,_,admin,home,group) {
 
     
@@ -43,7 +41,8 @@ container.resolve(function (users,_,admin,home,group) {
 
 
         ConfigureExpress(app);
-        require('./socket/groupchat')(io);
+        require('./socket/groupchat')(io,Users);
+        require('./socket/friend')(io);
         const router = require('express-promise-router')();
 
         users.SetRouting(router);
