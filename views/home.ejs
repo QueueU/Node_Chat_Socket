@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<%- // include partials/navbar.ejs %>
+<%- include partials/navbar.ejs %>
   
 <div class="col-md-12">
    <form action="/results" method="post">
@@ -59,7 +59,7 @@
             
             <div class="col-md-9">
                 <div>
-                <% _.forEach(data,function(val){ %>
+                <% _.forEach(chunks,function(val){ %>
                     <div class="category-list">
                         <div class="row">
                                 <% _.forEach(val,function(val2){ %>
@@ -85,8 +85,8 @@
                                                 </div>
                                                 
                                                 <div class="col-xs-12 col-md-6">
-                                                    <input type="hidden" name="id" id="id" value="">
-                                                    <input type="hidden" name="clubName" id="club_Name" value="">
+                                                    <input type="" name="id" id="id" value="<%= val2._id %>">
+                                                    <input type="" name="clubName" id="club_Name" value="<%= val2.name %>">
                                                     <button class="btn add-fav">
                                                         Add To Favorite
                                                     </button>
