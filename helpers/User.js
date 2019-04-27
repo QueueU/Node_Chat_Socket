@@ -39,7 +39,7 @@ module.exports = function () {
                 const { msg } = result;
                 console.log(result);
                 if (msg != undefined) {
-                    console.log(msg);
+                    console.log("msg"+msg);
                     
                    
                     //return;

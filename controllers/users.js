@@ -13,12 +13,12 @@ module.exports=function(_,passport,User){
 
         },
 
-        postLogin:passport.authenticate('local.signup',{
+        postLogin:passport.authenticate('local.login',{
             
             successRedirect : '/home',
             failurRedirect:'/',
             failurFlash:true
-        },console.log("get")), 
+        },console.log("get login  ")), 
 
 
 
@@ -32,7 +32,7 @@ module.exports=function(_,passport,User){
         {   
             
             const errors = req.flash('error');
-            console.log(errors.length);
+            console.log("length"+errors.length);
            
             return res.render('signup', {title: 'Footballkk | SignUp', messages: errors, hasErrors: errors.length > 0});
         },

@@ -15,7 +15,7 @@ $(document).ready(function(){
     });
     
     socket.on('newFriendRequest', function(friend){
-      //console.log(friend);
+        $('#reload').load(location.href + ' #reload');
         });
         $('#add_friend').on('submit', function(e){
             e.preventDefault();
@@ -38,5 +38,25 @@ $(document).ready(function(){
                 }
             })
         });
+        $('#accept_friend').on('click', function(){
+            var senderId = $('#senderId').val();
+            var senderName = $('#senderName').val();
+           // console.log("SenderId"+senderId);
+            //console.log("senderName"+senderName);
+            $.ajax({
+                url: '/group/'+room,
+                type: 'POST',
+                data: {
+                    senderId: senderId,
+                    senderName: senderName
+                },
+                success: function(){
+                    $(this).parent().eq(1).remove();
+                }
+            });
+            $('#reload').load(location.href + ' #reload');
+        });
         
     });
+
+  
