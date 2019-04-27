@@ -18,7 +18,7 @@ module.exports=function(_,passport,User){
             successRedirect : '/home',
             failurRedirect:'/',
             failurFlash:true
-        },console.log("get login  ")), 
+        }), 
 
 
 
@@ -32,7 +32,7 @@ module.exports=function(_,passport,User){
         {   
             
             const errors = req.flash('error');
-            console.log("length"+errors.length);
+            //console.log("length"+errors.length);
            
             return res.render('signup', {title: 'Footballkk | SignUp', messages: errors, hasErrors: errors.length > 0});
         },

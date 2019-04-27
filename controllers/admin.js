@@ -8,19 +8,19 @@ module.exports = function (formidable,Club,aws){
 
         adminPostPage: function(req,res)
         {
-            console.log("here from adminpostPage");
+           // console.log("here from adminpostPage");
             const newClub = new Club();
-            console.log("here2");
+           // console.log("here2");
             newClub.name = req.body.club;
             newClub.country = req.body.country;
             newClub.image = req.body.upload;
            // newClub.fan=[];
-            console.log("name",newClub.name);
-            console.log(newClub.country);
-            console.log(newClub.image);
+           // console.log("name",newClub.name);
+           // console.log(newClub.country);
+           // console.log(newClub.image);
 
             newClub.save((err) => {
-                console.log("err",err);
+             //   console.log("err",err);
                // done(null,newClub);
                 res.render('admin/dashboard');
             })
@@ -47,7 +47,7 @@ module.exports = function (formidable,Club,aws){
 
             form.parse(req);
            // this.adminPostPage;
-            console.log("here at This.uploading Function");
+           // console.log("here at This.uploading Function");
         }
     }
 }

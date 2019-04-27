@@ -37,14 +37,14 @@ module.exports = function () {
        
             req.getValidationResult().then(function (result) {
                 const { msg } = result;
-                console.log(result);
+               // console.log(result);
                 if (msg != undefined) {
-                    console.log("msg"+msg);
+                   // console.log("msg"+msg);
                     
                    
                     //return;
                 } else {
-                    console.log('Validation Ok');
+                 //   console.log('Validation Ok');
                     return next();
                 }
             });

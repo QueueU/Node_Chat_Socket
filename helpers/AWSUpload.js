@@ -26,18 +26,18 @@ const upload = multer({
         bucket: 'nodechataws',
         acl: 'public-read',
         metadata: function(req, file, cb){
-            console.log("yess",file.fieldname);
+           // console.log("yess",file.fieldname);
             cb(null, {fieldName: file.fieldname});
         },
         key: function(req, file, cb){
-            console.log("NOOOO",file.originalname);
+           // console.log("NOOOO",file.originalname);
             cb(null, file.originalname);
         }
     }),
 
     rename: function (fieldname, filename) {
 
-        console.log("here name of file ",filename.replace(/\W+/g, '-').toLowerCase());
+       // console.log("here name of file ",filename.replace(/\W+/g, '-').toLowerCase());
         return filename.replace(/\W+/g, '-').toLowerCase();
         
     }

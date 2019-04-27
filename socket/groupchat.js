@@ -3,7 +3,7 @@ module.exports=function(io,Users){
     const users=new Users();
      
     io.on('connection',(socket)=>{
-        console.log('User Connected from sockeet group');
+      //  console.log('User Connected from sockeet group');
 
         socket.on('join',(params,callback)=>
         {
@@ -11,12 +11,12 @@ module.exports=function(io,Users){
             users.AddUserData(socket.id,params.name,params.room);
             io.to(params.room).emit('usersList',users.GetUsersList(params.room));
             
-            console.log(users);
+           // console.log(users);
             callback();
         })
         socket.on('createMessage',(message,callback)=>
         {
-            console.log(message);
+           // console.log(message);
             io.to(message.room).emit('newMessage',{
                 text:message.text,
                 room:message.room,

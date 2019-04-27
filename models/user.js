@@ -5,7 +5,7 @@ const userSchema = mongoose.Schema({
     fullname : {type : String,unique : true, default : ''},
     email :{type : String,unique : true},
     password : {type : String,default : ''},
-    userImage : {type : String,default:''},
+    userImage : {type : String,default:'default.png'},
     facebook: {type : String, default:''},
     fbToken: Array,
     google: {type : String, default:''},
@@ -24,10 +24,10 @@ const userSchema = mongoose.Schema({
     totalRequest:{type:Number,default:0}
     
 
-},console.log("Here at user"));
+});
 
 
-console.log("username",userSchema.username);
+// console.log("username",userSchema.username);
 userSchema.methods.encryptPassword = function(password){
     return bcrypt.hashSync(password,bcrypt.genSaltSync(10),null);
 };

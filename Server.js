@@ -12,6 +12,8 @@ const passport = require('passport');
 const mongoose=require('mongoose');
 const socketIO = require('socket.io');
 const {Users} = require('./helpers/UsersClass');
+const {Global} = require('./helpers/Global');
+
 container.resolve(function (users,_,admin,home,group) {
 
     
@@ -43,6 +45,8 @@ container.resolve(function (users,_,admin,home,group) {
         ConfigureExpress(app);
         require('./socket/groupchat')(io,Users);
         require('./socket/friend')(io);
+        require('./socket/globalroom')(io,Global,_);
+
         const router = require('express-promise-router')();
 
         users.SetRouting(router);

@@ -28,12 +28,12 @@ passport.use('local.signup',new LocalStrategy({
     
     User.findOne({'email':email},(err,user) => {
         if(err) {
-            console.log("UnDone");
+           // console.log("UnDone");
             return done(err);
         }
 
         if(user){
-            console.log("Done");
+          //  console.log("Done");
             return done(null,false,req.flash('error','User with email already exist'));
         }
 
@@ -44,12 +44,12 @@ passport.use('local.signup',new LocalStrategy({
         newUser.email =req.body.email;
         newUser.password=newUser.encryptPassword(req.body.password);
 
-        console.log("UserName",newUser.username);
-        console.log("email",newUser.email);
+       // console.log("UserName",newUser.username);
+        //console.log("email",newUser.email);
 
         newUser.save((err) => {
             done(null,newUser);
-            console.log("Data inserted");
+         //  console.log("Data inserted");
             
         });
        

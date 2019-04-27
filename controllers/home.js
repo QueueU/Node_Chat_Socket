@@ -39,7 +39,7 @@ module.exports = function(async,Club,_,Users){
               {
                   dataChunk.push(res1.slice(i,i+chunkSize));
               }
-              console.log(dataChunk);
+            //  console.log(dataChunk);
 
               res.render('home',{title:'Footballkik -Home',user:req.user,chunks:dataChunk,data:res3});
           })
@@ -58,7 +58,7 @@ module.exports = function(async,Club,_,Users){
                                 email:req.user.email
                             }}
                         } ,(err,count) => {
-                            console.log("//////////////////////",count);
+                          //  console.log("//////////////////////",count);
                             callback(err,count);
                         });
                     }
