@@ -65,6 +65,18 @@ $('#messages').append(message);
         },function(){
             $('#msg').val('');
         });
+
+        $.ajax({
+            rl: '/group/'+room,
+            type: 'POST',
+            data: {
+                message: msg,
+                groupName: room
+            },
+            success: function(){
+                $('#msg').val('');
+            }
+        })
     })
 });
 

@@ -14,7 +14,7 @@ const socketIO = require('socket.io');
 const {Users} = require('./helpers/UsersClass');
 const {Global} = require('./helpers/Global');
 
-container.resolve(function (users,_,admin,home,group,privatechat) {
+container.resolve(function (users,_,admin,home,group,privatechat,results) {
 
     
     mongoose.Promise =global.Promise;
@@ -52,6 +52,7 @@ container.resolve(function (users,_,admin,home,group,privatechat) {
         users.SetRouting(router);
         admin.SetRouting(router);
         home.SetRouting(router);
+        results.SetRouting(router);
         group.SetRouting(router);
         privatechat.SetRouting(router);
         app.use(router);

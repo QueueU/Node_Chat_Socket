@@ -23,6 +23,10 @@ $(document).ready(function () {
             console.log("User Join PM");
         });
 
+        socket.on('message display', function(){
+            $('#reload').load(location.href + ' #reload');
+        });
+
         socket.on('new message', function (data) {
             var template = $('#message-template').html();
             var message = Mustache.render(template, {

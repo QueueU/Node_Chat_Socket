@@ -1,14 +1,12 @@
-module.exports=function(io){
-
-    io.on('connection',(socket) =>{
-        socket.on('join PM',(pm,callback) => {
+module.exports = function(io){
+     
+    io.on('connection', (socket) => {
+        socket.on('join PM', (pm) => {
             socket.join(pm.room1);
             socket.join(pm.room2);
-            callback();
         });
+        
         socket.on('private message', (message, callback) => {
-
-            console.log(message);
             io.to(message.room).emit('new message', {
                 text: message.text,
                 sender: message.sender
@@ -19,8 +17,9 @@ module.exports=function(io){
             callback();
         });
         
-
-
-
+        socket.on('refresh', function(){
+            io.emit('new refresh', {});
+        });
+        
     });
 }
