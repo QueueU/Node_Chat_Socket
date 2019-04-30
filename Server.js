@@ -14,7 +14,7 @@ const socketIO = require('socket.io');
 const {Users} = require('./helpers/UsersClass');
 const {Global} = require('./helpers/Global');
 
-container.resolve(function (users,_,admin,home,group,privatechat,results) {
+container.resolve(function (users,_,admin,home,group,privatechat,results,profile,interest) {
 
     
     mongoose.Promise =global.Promise;
@@ -55,6 +55,8 @@ container.resolve(function (users,_,admin,home,group,privatechat,results) {
         results.SetRouting(router);
         group.SetRouting(router);
         privatechat.SetRouting(router);
+        profile.SetRouting(router);
+         interest.SetRouting(router);
         app.use(router);
         
     }
@@ -64,6 +66,8 @@ container.resolve(function (users,_,admin,home,group,privatechat,results) {
     function ConfigureExpress(app) {
 
         require('./passport/passport-local');
+        require('./passport/passport-google');
+        require('./passport/passport-facebook');
         app.use(express.static('public'));
 
 

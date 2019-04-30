@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema({
     facebook: {type : String, default:''},
     fbToken: Array,
     google: {type : String, default:''},
-    googleToken:Array,
+    google: {type: String, default: ''},
     sentRequest:[{
         username:{type:String,default:''}
     }],
@@ -21,7 +21,20 @@ const userSchema = mongoose.Schema({
         friendId:{type:mongoose.Schema.Types.ObjectId,ref:'User'},
         friendName:{type:String,default:''}
     }],
-    totalRequest:{type:Number,default:0}
+    totalRequest:{type:Number,default:0},
+    gender: {type: String, default: ''},
+    country: {type: String, default: ''},
+    mantra: {type: String, default: ''},
+
+    favNationalTeam: [{
+        teamName: {type: String, default: ''}
+    }],
+    favPlayer: [{
+        playerName: {type: String, default: ''}
+    }],
+    favClub: [{
+        clubName: {type: String}
+    }]
     
 
 });

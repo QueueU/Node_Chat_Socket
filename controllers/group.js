@@ -42,12 +42,15 @@
                                         }
                                     }, "body": { $first: "$$ROOT" }
                                 }
-                            }], function (err, newResult) {
-
-                                console.log(newResult);
-                                callback(err, newResult);
-
-
+                            }], function(err, newResult){
+                                const arr = [
+                                    {path: 'body.sender', model: 'User'},
+                                    {path: 'body.receiver', model: 'User'}
+                                ];
+                                
+                                Message.populate(newResult, arr, (err, newResult1) => {
+                                    callback(err, newResult1);
+                                });
                             }
                     );
                 },

@@ -1,30 +1,23 @@
-module.exports = function (async, Users, Message) {
-
-
+module.exports = function(async, Users, Message){
     return {
-        SetRouting: function (router) {
-            router.get('/chat/:name', this.getChatPage);
+        SetRouting: function(router){
+            router.get('/chat/:name', this.getchatPage);
             router.post('/chat/:name', this.chatPostPage);
-
         },
-        getChatPage: function (req, res) {
-
-
+        
+        getchatPage: function(req, res){
             async.parallel([
-                function (callback) {
-                    Users.findOne({ 'username': req.user.username })
+                function(callback){
+                    Users.findOne({'username': req.user.username})
                         .populate('request.userId')
                         .exec((err, result) => {
                             callback(err, result);
                         })
-
                 },
-
-                function (callback) {
-
+                
+                function(callback){
                     const nameRegex = new RegExp("^" + req.user.username.toLowerCase(), "i")
-                    Message.aggregate(
-                        [
+                    Message.aggregate([
                         {$match:{$or:[{"senderName":nameRegex}, {"receiverName":nameRegex}]}},
                         {$sort:{"createdAt":-1}},
                         {
@@ -43,54 +36,54 @@ module.exports = function (async, Users, Message) {
                             }, "body": {$first:"$$ROOT"}
                             }
                         }], function(err, newResult){
+                            const arr = [
+                                {path: 'body.sender', model: 'User'},
+                                {path: 'body.receiver', model: 'User'}
+                            ];
                             
-                            console.log(newResult);
-                            callback(err,newResult);
-                            
-                            
+                            Message.populate(newResult, arr, (err, newResult1) => {
+                                callback(err, newResult1);
+                            });
                         }
-                        );
+                    )
                 },
+                
                 function(callback){
                     Message.find({'$or':[{'senderName':req.user.username}, {'receiverName':req.user.username}]})
                         .populate('sender')
                         .populate('receiver')
                         .exec((err, result3) => {
-                            console.log("User's all message",result3);
                             callback(err, result3)
                         })
                 }
             ], (err, results) => {
-
                 const result1 = results[0];
-                const result2=results[1];
-                const result3=results[2];
+                const result2 = results[1];
+                const result3 = results[2];
+                
                 const params = req.params.name.split('.');
                 const nameParams = params[0];
-                // console.log("User Fred Request "+results[0].totalRequest);
-
-                res.render('private/privatechat', { title: 'FOOTBALL --Private Chat', user: req.user, data: result1,chat:result2,chats:result3,name:nameParams });
+                
+                res.render('private/privatechat', {title: 'Footballkik - Private Chat', user:req.user, data: result1, chat: result2, chats:result3, name:nameParams});
             });
-
         },
-
-
-        chatPostPage: function (req, res, next) {
+        
+        chatPostPage: function(req, res, next){
             const params = req.params.name.split('.');
             const nameParams = params[0];
-            const nameRegex = new RegExp("^" + nameParams.toLowerCase(), "i");
-
+            const nameRegex = new RegExp("^"+nameParams.toLowerCase(), "i");
+            
             async.waterfall([
-                function (callback) {
-                    if (req.body.message) {
-                        Users.findOne({ 'username': { $regex: nameRegex } }, (err, data) => {
-                            callback(err, data);
+                function(callback){
+                    if(req.body.message){
+                        Users.findOne({'username':{$regex: nameRegex}}, (err, data) => {
+                           callback(err, data);
                         });
                     }
                 },
-
-                function (data, callback) {
-                    if (req.body.message) {
+                
+                function(data, callback){
+                    if(req.body.message){
                         const newMessage = new Message();
                         newMessage.sender = req.user._id;
                         newMessage.receiver = data._id;
@@ -99,40 +92,51 @@ module.exports = function (async, Users, Message) {
                         newMessage.message = req.body.message;
                         newMessage.userImage = req.user.UserImage;
                         newMessage.createdAt = new Date();
-
+                        
                         newMessage.save((err, result) => {
-                            if (err) {
+                            if(err){
                                 return next(err);
                             }
-                            console.log(result)
                             callback(err, result);
                         })
                     }
                 }
             ], (err, results) => {
-                res.redirect('/chat/' + req.params.name);
+                res.redirect('/chat/'+req.params.name);
             });
-
-            async.parallel([
-                function(callback){
-                    if(req.body.chatId){
-                        Message.update({
-                            '_id':req.body.chatId
-                        },
-                        {
-                            "isRead":true
-                        },(err,done) => {
-                            console.log(done);
-                            callback(err,done);
-                        })
-                    }
-
-                }
-            ],(err, results) => {
-                res.redirect('/chat/' + req.params.name);
-            })
+            
+          //  FriendResult.PostRequest(req, res, '/chat/'+req.params.name);
+            
         }
     }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

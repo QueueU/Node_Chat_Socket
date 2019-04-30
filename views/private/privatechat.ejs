@@ -38,7 +38,7 @@
 
                                             </div>
                                             <div class="user cover-img">
-                                                <img src="https://footballkik.s3.amazonaws.com/<%= user.userImage %>" class="img-circle" alt="">
+                                                <img src="https://nodechataws.s3.amazonaws.com/<%= user.userImage %>" class="img-circle" alt="">
                                             </div>
                                             <div class="content">
                                                 <div class="main">
@@ -115,7 +115,7 @@
                                      <% if(name === val.receiver.username.toLowerCase()) {%>
                                       <li class="left">
                                          <span class="chat-img1 pull-left">
-                                             <img src="http://placehold.it/300x300" class="img-circle" alt="">
+                                             <img src="https://nodechataws.s3.amazonaws.com/<%= val.sender.userImage %>" class="img-circle" alt="">
                                          </span>
                                          <div class="chat-body1">
                                              <span class="chat-name"><%= val.senderName %></span>
@@ -126,7 +126,7 @@
                                       <% } else if(name === val.sender.username.toLowerCase()) {%>
                                           <li class="left">
                                              <span class="chat-img1 pull-left">
-                                                 <img src="http://placehold.it/300x300" class="img-circle" alt="">
+                                                 <img src="https://nodechataws.s3.amazonaws.com/<%= val.sender.userImage %>" class="img-circle" alt="">
                                              </span>
                                              <div class="chat-body1">
                                                  <span class="chat-name"><%= val.senderName %></span>
@@ -142,7 +142,7 @@
                                      <script id="message-template" type="text/template">
                                         <li class="left">
                                            <span class="chat-img1 pull-left">
-                                               <img src="http://placehold.it/300x300" class="img-circle" alt="">
+                                               <img src="https://nodechataws.s3.amazonaws.com/{{userImage}}" class="img-circle" alt="">
                                            </span>
                                            <div class="chat-body1">
                                                <span class="chat-name">{{ sender }}</span>
